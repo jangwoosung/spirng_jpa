@@ -21,6 +21,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
+import jpabook.springjpa.domain.Member;
+
 /**
  * Class description
  *
@@ -42,7 +44,7 @@ class MemberRepositoryTest {
 
 		//given
 		Member member = new Member();
-		member.setUsername("memberA");
+//		member.setUsername("memberA");
 
 		//when
 		Long saveId = memberRepository.save(member);
@@ -50,7 +52,7 @@ class MemberRepositoryTest {
 
 		//then
 		Assertions.assertThat(findMember.getId()).isEqualTo(member.getId());
-		Assertions.assertThat(findMember.getUsername()).isEqualTo(member.getUsername());
+//		Assertions.assertThat(findMember.getUsername()).isEqualTo(member.getUsername());
 		Assertions.assertThat(findMember).isEqualTo(member);
 
 		//1차영속성때문에 같음..

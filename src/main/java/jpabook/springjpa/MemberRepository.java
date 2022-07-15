@@ -13,6 +13,8 @@ import javax.persistence.PersistenceContext;
 
 import org.springframework.stereotype.Repository;
 
+import jpabook.springjpa.domain.Member;
+
 /**
  * Class description
  *
