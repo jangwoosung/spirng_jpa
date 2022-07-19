@@ -46,4 +46,5 @@ public class Member {
 
 	@OneToMany(mappedBy = "member") // order 테이블에있는 member 필드에의해 매핑된걸 나타냄
 	private List<Order> orders = new ArrayList<>();
+
 }

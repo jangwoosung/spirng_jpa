@@ -13,6 +13,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -53,7 +54,7 @@ public class Category {
 	private List<Item> items = new ArrayList<>();
 
 	// self로 양방향 엔티티 매핑 시작..
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "parent_id")
 	private Category parent;
 
@@ -61,5 +62,10 @@ public class Category {
 	private List<Category> child = new ArrayList<>();
 	// self로 양방향 엔티티 매핑 종료..
 
+	// 연관관계 메서드(양방향)
+	public void addChildCategory(Category child) {
+		this.child.add(child);
+		child.setParent(this);
+	}
 
 }
