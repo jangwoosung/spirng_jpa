@@ -14,7 +14,8 @@ import lombok.Getter;
 
 /**
  * Class description
- *
+ * 값 타입 객체는 Setter는 절대로 제공하면 안됨, 생성자에서 모든값을 초기호하게 설계
+ * 기본 생성자 접근제어자는 public 또는 protected로 설정해야함
  * @author jws
  * @since 2022. 7. 15
  * @version 1.0
