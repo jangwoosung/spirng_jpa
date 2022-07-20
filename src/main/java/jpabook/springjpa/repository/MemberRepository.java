@@ -11,11 +11,11 @@ package jpabook.springjpa.repository;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 
 import org.springframework.stereotype.Repository;
 
 import jpabook.springjpa.domain.Member;
+import lombok.RequiredArgsConstructor;
 
 /**
  * Class description
@@ -26,11 +26,15 @@ import jpabook.springjpa.domain.Member;
 */
 
 @Repository
+@RequiredArgsConstructor
 public class MemberRepository {
 
-	@PersistenceContext
-	private EntityManager em;
+	private final EntityManager em;
 
+//	@PersistenceContext
+//	private EntityManager em;
+
+	// persist를 호출하는 순간 영속성 컨텍스트에 올림
 	public void save(Member member) {
 		em.persist(member);
 	}
