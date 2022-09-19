@@ -17,5 +17,5 @@ package jpabook.springjpa.domain;
 */
 
 public enum DeliveryStatus {
-
+	COMP;
 }
