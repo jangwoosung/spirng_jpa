@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import jpabook.springjpa.domain.item.Item;
-import jpabook.springjpa.repository.ItempRepository;
+import jpabook.springjpa.repository.ItemRepository;
 import lombok.RequiredArgsConstructor;
 
 /**
@@ -31,7 +31,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class ItemService {
 
-	private final ItempRepository itempRepository;
+	private final ItemRepository itempRepository;
 
 	@Transactional
 	public void saveItem(Item item) {

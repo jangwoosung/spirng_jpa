@@ -8,13 +8,11 @@
 
 package jpabook.springjpa.repository;
 
-import java.util.List;
-
 import javax.persistence.EntityManager;
 
 import org.springframework.stereotype.Repository;
 
-import jpabook.springjpa.domain.item.Item;
+import jpabook.springjpa.domain.Order;
 import lombok.RequiredArgsConstructor;
 
 /**
@@ -27,23 +25,17 @@ import lombok.RequiredArgsConstructor;
 
 @Repository
 @RequiredArgsConstructor
-public class ItempRepository {
+public class OrderRepository {
 
 	private final EntityManager em;
 
-	public void save(Item item) {
-		if (item.getId() == null) {
-			em.persist(item);
-		} else {
-			em.merge(item);
-		}
+	public void save(Order order) {
+		em.persist(order);
 	}
 
-	public Item findOne(Long id) {
-		return em.find(Item.class, id);
+	public Order findOne(Long id) {
+		return em.find(Order.class, id);
 	}
 
-	public List<Item> findAll() {
-		return em.createQuery("select i form Item i", Item.class).getResultList();
-	}
+	//public List<Order> findAll(OrderSearch orderSearch) {}
 }
