@@ -1,13 +1,19 @@
 spring:
   datasource:
-    url: jdbc:h2:tcp://localhost/~/test;DB_CLOSE_DELAY=-1
+    #url: jdbc:h2:tcp://localhost/~/test;DB_CLOSE_DELAY=-1
+    url: jdbc:h2:mem:test
     username: sa
     password: 
     driver-class-name: org.h2.Driver
+    #hikari:
+      #jdbc-url: jdbc:postgresql://localhost:5432/postgres
+      #username: postgres
+      #password: 4991
+      #driver-class-name: org.postgresql.Driver
 
   jpa:
     hibernate:
-      ddl-auto: create #지우고 다시 생성
+      ddl-auto: create-drop #지우고 다시 생성
     properties:
       hibernate:
 #        show_sql: true #sysout을 통해 출력, 실제로는 안씀

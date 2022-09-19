@@ -41,7 +41,6 @@ class MemberServiceTest {
 	MemberRepository memberRepository;
 
 	@Test
-	@Rollback(false) // 자동으로 롤백하기때문에 눈으로 확인하기 위해서^^:
 	public void 회원가입() throws Exception {
 
 		// given
@@ -74,5 +73,4 @@ class MemberServiceTest {
 		// then
 		assertEquals(exception.getMessage(), "이미 존재하는 회원입니다.");
 	}
-
 }
