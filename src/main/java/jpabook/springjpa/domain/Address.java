@@ -10,7 +10,9 @@ package jpabook.springjpa.domain;
 
 import javax.persistence.Embeddable;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 /**
  * Class description
@@ -23,6 +25,8 @@ import lombok.Getter;
 
 @Embeddable
 @Getter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Address {
 
 	private String city;
