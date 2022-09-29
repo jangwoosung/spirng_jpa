@@ -8,10 +8,10 @@
 
 package jpabook.springjpa.controller;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
+import javax.validation.constraints.NotEmpty;
 
-import lombok.extern.slf4j.Slf4j;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * Class description
@@ -20,16 +20,14 @@ import lombok.extern.slf4j.Slf4j;
  * @since 2022. 9. 29
  * @version 1.0
 */
+@Getter
+@Setter
+public class MemberForm {
 
-@Controller
-@Slf4j
-public class HomeController {
+	@NotEmpty(message="회원 이름은 필수 입니다.")
+	private String name;
 
-	@RequestMapping("/")
-	public String home() {
-		log.info("home controller");
-		return "home";
-	}
-	
-	
+	private String city;
+	private String street;
+	private String zipcode;
 }
