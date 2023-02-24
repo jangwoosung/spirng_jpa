@@ -19,7 +19,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
-import jpabook.springjpa.domain.Member;
+import jpabook.springjpa.domain.OldMember;
 import jpabook.springjpa.repository.MemberRepository;
 
 /**

@@ -13,7 +13,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import jpabook.springjpa.domain.Member;
+import jpabook.springjpa.domain.OldMember;
 import jpabook.springjpa.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 
@@ -34,27 +34,27 @@ public class MemberService {
 
 	// 회원 가입
 	@Transactional // false로 먹힘
-	public Long join(Member member) {
+	public Long join(OldMember member) {
 		validateDuplicateMember(member);
 		memberRepository.save(member);
 		return member.getId();
 	}
 
 	// 중복 회원 검증
-	private void validateDuplicateMember(Member member) {
-		List<Member> findMembers = memberRepository.findByName(member.getName());
+	private void validateDuplicateMember(OldMember member) {
+		List<OldMember> findMembers = memberRepository.findByName(member.getName());
 		if (!findMembers.isEmpty()) {
 			throw new IllegalStateException("이미 존재하는 회원입니다.");
 		}
 	}
 
 	// 회원 전체 조회
-	public List<Member> findMembers() {
+	public List<OldMember> findMembers() {
 		return memberRepository.findAll();
 	}
 
 	// 회원 한건 조회
-	public Member findOne(Long meberId) {
+	public OldMember findOne(Long meberId) {
 		return memberRepository.findOne(meberId);
 	}
 }

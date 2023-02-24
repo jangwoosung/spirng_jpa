@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import jpabook.springjpa.domain.Delivery;
-import jpabook.springjpa.domain.Member;
+import jpabook.springjpa.domain.OldMember;
 import jpabook.springjpa.domain.Order;
 import jpabook.springjpa.domain.OrderItem;
 import jpabook.springjpa.domain.item.Item;
@@ -52,7 +52,7 @@ public class OrderService {
 	public Long order(Long memberId, Long itemId, int count) {
 
 		// 엔티티 조회
-		Member member = memberRepository.findOne(memberId);
+		OldMember member = memberRepository.findOne(memberId);
 		Item item =  itemRepository.findOne(itemId);
 
 		// 배송정보 생성

@@ -1,7 +1,7 @@
 spring:
   datasource:
-    #url: jdbc:h2:tcp://localhost/~/test;DB_CLOSE_DELAY=-1
-    url: jdbc:h2:mem:test
+    url: jdbc:h2:tcp://localhost/~/test;DB_CLOSE_DELAY=-1
+    #url: jdbc:h2:mem:test
     username: sa
     password: 
     driver-class-name: org.h2.Driver
@@ -14,7 +14,8 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: create-drop #지우고 다시 생성
+      #ddl-auto: create-drop #지우고 다시 생성 후 종료후 테이블도 다삭제(테이블도 안남음)
+      ddl-auto: create #지우고 다시 생성 후 종료시 아무동작 안함(테이블만남음)
     properties:
       hibernate:
 #        show_sql: true #sysout을 통해 출력, 실제로는 안씀

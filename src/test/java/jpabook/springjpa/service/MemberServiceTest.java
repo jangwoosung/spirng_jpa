@@ -20,7 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 
-import jpabook.springjpa.domain.Member;
+import jpabook.springjpa.domain.OldMember;
 import jpabook.springjpa.repository.MemberRepository;
 
 /**
@@ -44,7 +44,7 @@ class MemberServiceTest {
 	public void 회원가입() throws Exception {
 
 		// given
-		Member member = new Member();
+		OldMember member = new OldMember();
 		member.setName("Kim");
 
 		// when
@@ -58,9 +58,9 @@ class MemberServiceTest {
 	public void 중복_회원_에러() throws Exception {
 
 		// given
-		Member member1 = new Member();
+		OldMember member1 = new OldMember();
 		member1.setName("Kim");
-		Member member2 = new Member();
+		OldMember member2 = new OldMember();
 		member2.setName("Kim");
 
 		// when

@@ -53,7 +53,7 @@ public class Order {
 
 	@ManyToOne(fetch = FetchType.LAZY) // @ManyToOne, @OneToOne은 기본값 EAGER(N+1문제발생)> LAZY로 변경해야함
 	@JoinColumn(name="member_id")
-	private Member member;
+	private OldMember member;
 
 	@OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
 	private List<OrderItem> orderItems = new ArrayList<>();
@@ -68,7 +68,7 @@ public class Order {
 	private OrderStatus status;
 
 	// 연관관계 메서드(양방향) - N:1
-	public void setMember(Member member) {
+	public void setMember(OldMember member) {
 		this.member = member;
 		member.getOrders().add(this);
 	}
@@ -97,7 +97,7 @@ public class Order {
 //	}
 
 	// 생성 메서드
-	public static Order createOrder(Member member, Delivery delivery, OrderItem... orderItems) {
+	public static Order createOrder(OldMember member, Delivery delivery, OrderItem... orderItems) {
 		Order order = new Order();
 		order.setMember(member);
 		order.setDelivery(delivery);

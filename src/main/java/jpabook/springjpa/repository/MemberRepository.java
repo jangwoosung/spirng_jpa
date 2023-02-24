@@ -14,7 +14,7 @@ import javax.persistence.EntityManager;
 
 import org.springframework.stereotype.Repository;
 
-import jpabook.springjpa.domain.Member;
+import jpabook.springjpa.domain.OldMember;
 import lombok.RequiredArgsConstructor;
 
 /**
@@ -35,23 +35,23 @@ public class MemberRepository {
 //	private EntityManager em;
 
 	// persist를 호출하는 순간 영속성 컨텍스트에 올림
-	public void save(Member member) {
+	public void save(OldMember member) {
 		em.persist(member);
 	}
 
-	public Member findOne(Long id) {
-		return em.find(Member.class, id);
+	public OldMember findOne(Long id) {
+		return em.find(OldMember.class, id);
 	}
 
 	// 전체조회는 JPQL(실제 테이블이 아닌 Member 객체에서 검색함)
-	public List<Member> findAll() {
-		return em.createQuery("select m from Member m", Member.class)
+	public List<OldMember> findAll() {
+		return em.createQuery("select m from Member m", OldMember.class)
 				.getResultList();
 	}
 
 	// JPQL(실제 테이블이 아닌 Member 객체에서 검색함)
-	public List<Member> findByName(String name) {
-		return em.createQuery("select m from Member m where m.name = :name", Member.class)
+	public List<OldMember> findByName(String name) {
+		return em.createQuery("select m from Member m where m.name = :name", OldMember.class)
 				.setParameter("name", name)
 				.getResultList();
 	}

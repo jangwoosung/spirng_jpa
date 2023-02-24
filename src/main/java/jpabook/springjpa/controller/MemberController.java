@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import jpabook.springjpa.domain.Address;
-import jpabook.springjpa.domain.Member;
+import jpabook.springjpa.domain.OldMember;
 import jpabook.springjpa.service.MemberService;
 import lombok.RequiredArgsConstructor;
 
@@ -52,7 +52,7 @@ public class MemberController {
 
 		Address address = new  Address(form.getCity(), form.getStreet(), form.getZipcode());
 
-		Member member = new Member();
+		OldMember member = new OldMember();
 		member.setName(form.getName());
 		member.setAddress(address);
 
@@ -63,7 +63,7 @@ public class MemberController {
 
 	@GetMapping("/members")
 	public String list(Model model) {
-		List<Member> members = memberService.findMembers();
+		List<OldMember> members = memberService.findMembers();
 		model.addAttribute("members", members);
 		return "members/memberList";
 	}

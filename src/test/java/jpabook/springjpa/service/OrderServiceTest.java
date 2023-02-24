@@ -18,7 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.junit.jupiter.api.Test;
 
 import jpabook.springjpa.domain.Address;
-import jpabook.springjpa.domain.Member;
+import jpabook.springjpa.domain.OldMember;
 import jpabook.springjpa.domain.Order;
 import jpabook.springjpa.domain.OrderStatus;
 import jpabook.springjpa.domain.item.Book;
@@ -47,7 +47,7 @@ class OrderServiceTest {
 	public void 상품주문() throws Exception {
 
 		//given
-		Member member = createMember();
+		OldMember member = createMember();
 		Book book = createBook("시골 JPA", 10000, 10);
 
 		int orderCount = 2;
@@ -68,7 +68,7 @@ class OrderServiceTest {
 	public void 주문취소() throws Exception {
 
 		//given
-		Member member = createMember();
+		OldMember member = createMember();
 		Item item = createBook("시골 JPA", 10000, 10);
 
 		int orderCount = 11;
@@ -104,8 +104,8 @@ class OrderServiceTest {
 	/**
 	 * @return Member
 	 */
-	private Member createMember() {
-		Member member = new Member();
+	private OldMember createMember() {
+		OldMember member = new OldMember();
 		member.setName("");
 		member.setAddress(new Address("서울", "강가", "123-123"));
 		em.persist(member);
