@@ -98,4 +98,33 @@ class QuerydslBasicTest {
 		assertThat(member.getUsername()).isEqualTo("member1");
 	}
 
+	@Test
+	@DisplayName("검색조건 쿼리1")
+	void search() {
+		QMember m = new QMember("m"); // 같은 테이이블을 조인할때 별칭으로 구분 짓기위해서 사용함(별칭)
+
+		Member member = queryFactory.select(m)
+				.from(m)
+				.where(m.username.eq("member1")
+				       .and(m.age.eq(10))
+						)
+				.fetchOne();
+
+		assertThat(member.getUsername()).isEqualTo("member1");
+	}
+
+	@Test
+	@DisplayName("검색조건 쿼리2")
+	void search2() {
+		QMember m = new QMember("m"); // 같은 테이이블을 조인할때 별칭으로 구분 짓기위해서 사용함(별칭)
+
+		Member member = queryFactory.select(m).from(m).where(
+		                                                     m.username.eq("member1"),
+		                                                     (m.age.eq(10))
+		                                                     )
+				.fetchOne();
+
+		assertThat(member.getUsername()).isEqualTo("member1");
+	}
+
 }
