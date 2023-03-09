@@ -20,6 +20,7 @@ spring:
       hibernate:
 #        show_sql: true #sysout을 통해 출력, 실제로는 안씀
         format_sql: true
+        use_sql_commentes: true # JPQL 이 실행된거 간단하게 보는 옵션 
 
 logging:
   level:

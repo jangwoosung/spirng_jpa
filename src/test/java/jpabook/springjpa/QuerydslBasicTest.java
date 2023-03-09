@@ -91,7 +91,7 @@ class QuerydslBasicTest {
 	@Test
 	@DisplayName("동시성 문제가 없고, JPAQueryFactory 부분을 중복 선언 제거")
 	void startQueryDsl_vsersion2() {
-		QMember m = new QMember("m");
+		QMember m = new QMember("m"); // 같은 테이이블을 조인할때 별칭으로 구분 짓기위해서 사용함(별칭)
 
 		Member member = queryFactory.select(m).from(m).where(m.username.eq("member1")).fetchOne();
 
