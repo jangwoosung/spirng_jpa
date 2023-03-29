@@ -8,7 +8,11 @@
 
 package jpabook.springjpa;
 
+import static jpabook.springjpa.domain.QMember.member;
+import static jpabook.springjpa.domain.QTeam.team;
 import static org.assertj.core.api.Assertions.assertThat;
+
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
@@ -20,12 +24,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import com.querydsl.jpa.impl.JPAQuery;
+import com.querydsl.core.Tuple;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 
 import jpabook.springjpa.domain.Member;
 import jpabook.springjpa.domain.QMember;
-import jpabook.springjpa.domain.Team;
+import jpabook.springjpa.domain.Team;;
 
 /**
  * Class description
@@ -48,8 +52,8 @@ class QuerydslBasicTest {
 
 		queryFactory = new JPAQueryFactory(em);
 
-		Team teamA = new Team("testA");
-		Team teamB = new Team("testB");
+		Team teamA = new Team("teamA");
+		Team teamB = new Team("teamB");
 		em.persist(teamA);
 		em.persist(teamB);
 
@@ -125,6 +129,46 @@ class QuerydslBasicTest {
 				.fetchOne();
 
 		assertThat(member.getUsername()).isEqualTo("member1");
+	}
+
+	/**
+	 *  예) 회원과 팀을 조읺아면서, 팀 이름이 teamA인 팀만 조인, 회원은 모두 조회
+	 *  JPQL : select m, t from Member m left join m.team t on t.name = 'teamA'
+	 */
+	@Test
+	public void join_on_filtering() {
+		List<Tuple> result = queryFactory
+				.select(member, team)
+				.from(member)
+				.leftJoin(member.team, team)
+//				.on(team.name.eq("teamA"))
+				.where(team.name.eq("teamA"))
+				.fetch();
+
+		for (Tuple tuple : result) {
+			System.out.println("tuple = " + tuple);
+		}
+	}
+
+	/**
+	 *  연관관계 없는 엔티티 외부 조인
+	 *  회원의 이름이 팀 이름과 같음
+	 */
+	@Test
+	public void join_on_no_relation() {
+		em.persist(new Member("teamA"));
+		em.persist(new Member("teamB"));
+		em.persist(new Member("teamC"));
+
+		List<Tuple> result = queryFactory
+				.select(member, team)
+				.from(member)
+				.leftJoin(team).on(member.username.eq(team.name))
+				.fetch();
+
+		for (Tuple tuple : result) {
+			System.out.println("tuple = " + tuple);
+		}
 	}
 
 }
